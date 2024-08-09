@@ -1,0 +1,2 @@
+ImmutablesWithoutConstructorArgsFactoryTest:testCreate(address,uint256,uint256) (runs: 257, μ: 99209, ~: 99236)
+ImmutablesWithoutConstructorArgsFactoryTest:testCreate2(address,uint256,uint256,bytes32) (runs: 257, μ: 99402, ~: 99429)
