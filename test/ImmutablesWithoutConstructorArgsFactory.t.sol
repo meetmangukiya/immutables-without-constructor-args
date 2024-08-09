@@ -6,11 +6,11 @@ import {console} from "forge-std/console.sol";
 
 contract ImmutablesWithoutConstructorArgs {
     address public immutable addr;
-    uint public immutable num;
+    uint256 public immutable num;
 
     constructor() payable {
         bytes memory initData = ImmutablesWithoutConstructorArgsFactory(msg.sender).getInitData();
-        (address addr_, uint num_) = abi.decode(initData, (address, uint));
+        (address addr_, uint256 num_) = abi.decode(initData, (address, uint256));
         addr = addr_;
         num = num_;
     }
@@ -23,7 +23,7 @@ contract ImmutablesWithoutConstructorArgsFactoryTest is Test {
         factory = new ImmutablesWithoutConstructorArgsFactory();
     }
 
-    function testCreate(address addr, uint num, uint value) external {
+    function testCreate(address addr, uint256 num, uint256 value) external {
         bytes memory initData = abi.encode(addr, num);
         bytes memory initCode = type(ImmutablesWithoutConstructorArgs).creationCode;
         vm.deal(address(this), value);
@@ -33,7 +33,7 @@ contract ImmutablesWithoutConstructorArgsFactoryTest is Test {
         assertEq(deployedAddr.balance, value, "balance not as expected");
     }
 
-    function testCreate2(address addr, uint num, uint value, bytes32 salt) external {
+    function testCreate2(address addr, uint256 num, uint256 value, bytes32 salt) external {
         bytes memory initData = abi.encode(addr, num);
         bytes memory initCode = type(ImmutablesWithoutConstructorArgs).creationCode;
         vm.deal(address(this), value);
